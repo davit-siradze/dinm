@@ -1,0 +1,59 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #87ceeb; /* Light sky blue background */
+    font-family: Arial, sans-serif;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;  /* Full viewport width */
+    height: 50vh; /* Reduced height for smaller screen sizes */
+    background: #e0e0e0;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 2px solid #333; /* Optional: Add a border to visualize the container */
+}
+
+#sun {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #FFD700 60%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 
+                0 0 15px rgba(255, 215, 0, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+#dino {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url('s2.png'); /* Path to your dino image */
+    background-size: cover;
+}
+
+#obstacle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-image: url('s1.png'); /* Path to your obstacle image */
+    background-size: cover;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #333;
+}
