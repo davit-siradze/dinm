@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+        #gameOver {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        #restartButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        #restartButton:hover {
+            background-color: #45a049;
+        }
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="200"></canvas>
+    <div id="score">Score: 0</div>
+    <div id="gameOver">
+        <h1>თამაში დასრულდა</h1>
+        <p id="finalScore">Final Score: 0</p>
+        <button id="restartButton">თავიდან დაწყება</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameOverDiv = document.getElementById('gameOver');
+        const finalScoreEl = document.getElementById('finalScore');
+        const restartButton = document.getElementById('restartButton');
+        const scoreEl = document.getElementById('score');
+
+        const dino = new Image();
+        dino.src = 'https://static.vecteezy.com/system/resources/previews/018/870/863/original/illustration-of-karate-fighter-free-png.png';
+
+        let dinoX = 50;
+        let dinoY = 150;
+        let dinoWidth = 50;
+        let dinoHeight = 50;
+        let gravity = 0.6;
+        let lift = -15;
+        let velocity = 0;
+        let isJumping = false;
+
+        const cactus = new Image();
+        cactus.src = 'https://pngimg.com/d/cactus_PNG23641.png';
+
+        let cactusX = canvas.width;
+        let cactusY = 150;
+        let cactusWidth = 50;
+        let cactusHeight = 50;
+
+        let score = 0;
+        let gameOverFlag = false;
+
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space' && !isJumping) {
+                velocity = lift;
+                isJumping = true;
+            }
+        });
+
+        function update() {
+            if (gameOverFlag) return;
+
+            velocity += gravity;
+            dinoY += velocity;
+
+            if (dinoY >= 150) {
+                dinoY = 150;
+                isJumping = false;
+            }
+
+            cactusX -= 6;
+            if (cactusX < -cactusWidth) {
+                cactusX = canvas.width;
+            }
+
+            if (dinoX < cactusX + cactusWidth &&
+                dinoX + dinoWidth > cactusX &&
+                dinoY < cactusY + cactusHeight &&
+                dinoY + dinoHeight > cactusY) {
+                gameOver();
+            }
+
+            score++;
+            scoreEl.innerText = `Score: ${score}`;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(dino, dinoX, dinoY, dinoWidth, dinoHeight);
+            ctx.drawImage(cactus, cactusX, cactusY, cactusWidth, cactusHeight);
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            if (!gameOverFlag) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        function gameOver() {
+            gameOverFlag = true;
+            finalScoreEl.innerText = `Final Score: ${score}`;
+            gameOverDiv.style.display = 'block';
+        }
+
+        restartButton.addEventListener('click', () => {
+            document.location.reload();
+        });
+
+        dino.onload = function() {
+            gameLoop();
+        };
+    </script>
+</body>
+</html>
