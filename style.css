@@ -9,18 +9,20 @@ body {
 
 #gameContainer {
     position: relative;
-    width: 100vw;  /* Full viewport width */
-    height: 50vh; /* Reduced height for smaller screen sizes */
+    width: 80vh;
+    height: 50vh;
+    max-height: 600px; /* Maximum height to prevent container from being too large */
     background: #e0e0e0;
     overflow: hidden;
     margin: 0 auto;
     border: 2px solid #333; /* Optional: Add a border to visualize the container */
+    box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
 
 #sun {
     position: absolute;
     top: 20px;
-    left: 20px;
+    right: 20px;
     width: 100px;
     height: 100px;
     background: radial-gradient(circle, #FFD700 60%, transparent 70%);
@@ -35,7 +37,7 @@ body {
     bottom: 0;
     left: 50px;
     width: 50px;
-    height: 50px;
+    height: 80px;
     background-image: url('s2.png'); /* Path to your dino image */
     background-size: cover;
 }
@@ -56,4 +58,40 @@ body {
     left: 20px;
     font-size: 24px;
     color: #333;
+}
+#gameOverBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#gameOverBox.hidden {
+    display: none;
+}
+
+#gameOverMessage {
+    margin-bottom: 20px;
+}
+
+#playAgainButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#playAgainButton:hover {
+    background: #45a049;
 }
