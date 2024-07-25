@@ -9,9 +9,10 @@ body {
 
 #gameContainer {
     position: relative;
-    width: 80vh;
-    height: 50vh;
-    max-height: 600px; /* Maximum height to prevent container from being too large */
+    width: 90vw; /* 90% of viewport width */
+    height: 60vh; /* 60% of viewport height */
+    max-width: 800px; /* Maximum width to prevent container from being too large */
+    max-height: 500px; /* Maximum height to prevent container from being too large */
     background: #e0e0e0;
     overflow: hidden;
     margin: 0 auto;
@@ -21,10 +22,12 @@ body {
 
 #sun {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
+    top: 5%;
+    right: 5%;
+    width: 15vw; /* Responsive width */
+    height: 15vw; /* Responsive height */
+    max-width: 100px; /* Maximum size */
+    max-height: 100px; /* Maximum size */
     background: radial-gradient(circle, #FFD700 60%, transparent 70%);
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 
@@ -34,31 +37,36 @@ body {
 
 #dino {
     position: absolute;
-    bottom: 0;
-    left: 50px;
-    width: 50px;
-    height: 80px;
+    bottom: 0; /* Adjust position from bottom */
+    left: 5%;
+    width: 10vw; /* Responsive width */
+    height: 15vw; /* Responsive height */
+    max-width: 60px; /* Maximum size */
+    max-height: 90px; /* Maximum size */
     background-image: url('s2.png'); /* Path to your dino image */
     background-size: cover;
 }
 
 #obstacle {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
+    bottom:0; /* Adjust position from bottom */
+    right: 5%;
+    width: 10vw; /* Responsive width */
+    height: 10vw; /* Responsive height */
+    max-width: 60px; /* Maximum size */
+    max-height: 60px; /* Maximum size */
     background-image: url('s1.png'); /* Path to your obstacle image */
     background-size: cover;
 }
 
 #score {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
+    top: 5%;
+    left: 5%;
+    font-size: 2vw; /* Responsive font size */
     color: #333;
 }
+
 #gameOverBox {
     position: absolute;
     top: 50%;
@@ -80,11 +88,12 @@ body {
 
 #gameOverMessage {
     margin-bottom: 20px;
+    font-size: 1.5rem; /* Responsive font size */
 }
 
 #playAgainButton {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1rem; /* Responsive font size */
     border: none;
     background: #4CAF50;
     color: white;
