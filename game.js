@@ -8,21 +8,23 @@ let finalScore = document.getElementById('finalScore');
 let playAgainButton = document.getElementById('playAgainButton');
 
 let isJumping = false;
+let isFalling = false;
 let score = 0;
 let obstacleSpeed = 5; // Speed of the obstacle
 let gameOver = false; // Flag to track game state
+
+const GRAVITY = -0.4; // Gravity effect
+const JUMP_VELOCITY = 10; // Initial jump velocity
+
+let dinoBottom = 0; // Dino's bottom position in px
+let dinoVelocity = 0; // Dino's vertical velocity
 
 // Function to handle jumping
 function jump() {
     if (!isJumping && !gameOver) {
         isJumping = true;
+        dinoVelocity = JUMP_VELOCITY; // Set initial jump velocity
         dino.style.transition = 'none';
-        dino.style.bottom = '150px'; // Jump height
-        setTimeout(() => {
-            dino.style.transition = 'bottom 0.5s ease-out';
-            dino.style.bottom = '0px'; // Return to original position
-            isJumping = false;
-        }, 500);
     }
 }
 
@@ -44,6 +46,22 @@ playAgainButton.addEventListener('click', () => {
     gameOverBox.classList.add('hidden');
 });
 
+// Resize gameContainer based on window size
+function resizeGameContainer() {
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
+    let containerWidth = viewportWidth * 0.9; // 90% of viewport width
+    let containerHeight = viewportHeight * 0.6; // 60% of viewport height
+    
+    gameContainer.style.width = containerWidth + 'px';
+    gameContainer.style.height = containerHeight + 'px';
+}
+
+window.addEventListener('resize', resizeGameContainer);
+
+// Initial resize
+resizeGameContainer();
+
 function updateGame() {
     if (gameOver) return; // Skip update if game is over
 
@@ -51,10 +69,23 @@ function updateGame() {
     let dinoRect = dino.getBoundingClientRect();
     let obstacleRect = obstacle.getBoundingClientRect();
 
-    // Get the current obstacle position relative to the game container
-    let obstacleRight = parseInt(getComputedStyle(obstacle).right);
-    
+    // Update dino's vertical position
+    if (isJumping || isFalling) {
+        dinoVelocity += GRAVITY; // Apply gravity
+        dinoBottom += dinoVelocity; // Update vertical position
+        if (dinoBottom <= 0) {
+            dinoBottom = 0;
+            isJumping = false;
+            isFalling = false;
+        } else if (dinoBottom > containerRect.height - dinoRect.height) {
+            dinoBottom = containerRect.height - dinoRect.height;
+            isFalling = false;
+        }
+        dino.style.bottom = dinoBottom + 'px';
+    }
+
     // Move the obstacle
+    let obstacleRight = parseInt(getComputedStyle(obstacle).right);
     obstacle.style.right = (obstacleRight + obstacleSpeed) + 'px';
     if (parseInt(getComputedStyle(obstacle).right) > containerRect.width) {
         obstacle.style.right = '-50px'; // Reset obstacle position
@@ -78,13 +109,10 @@ function resetGame() {
     score = 0;
     scoreDisplay.innerText = 'Cookies 🍪: 0';
     obstacle.style.right = '-50px'; // Reset obstacle position
+    dinoBottom = 0;
+    dinoVelocity = 0;
+    dino.style.bottom = '0px';
 }
-
-// Handle resizing of the game container
-window.addEventListener('resize', () => {
-    let containerRect = gameContainer.getBoundingClientRect();
-    // Optional: Add logic to adjust game elements if needed
-});
 
 // Update the game at regular intervals
 setInterval(updateGame, 20);
