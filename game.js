@@ -9,6 +9,9 @@ let finalScore = document.getElementById('finalScore');
 let playAgainButton = document.getElementById('playAgainButton');
 let mobileMessageBox = document.getElementById('mobileMessageBox');
 let startGameButton = document.getElementById('startGameButton');
+let codeMessageGameOver = document.getElementById('codeMessageGameOver'); // Updated to match HTML ID
+let congratulatoryMessageBox = document.getElementById('congratulatoryMessage');
+let codeMessageCongratulatory = document.getElementById('codeMessageCongratulatory'); // Updated to match HTML ID
 
 // Define difficulty levels (10 levels)
 const DIFFICULTY_LEVELS = [
@@ -19,9 +22,9 @@ const DIFFICULTY_LEVELS = [
     { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 120 },
     { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 140 },
     { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 160 },
-    { speed: 12, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 180 },
-    { speed: 13, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
-    { speed: 14, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
+    { speed: 13, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 150 },
+    { speed: 14, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
+    { speed: 15, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
 ];
 
 let isJumping = false;
@@ -120,38 +123,24 @@ function resizeGameContainer() {
     
     gameContainer.style.width = containerWidth + 'px';
     gameContainer.style.height = containerHeight + 'px';
+    
+    // Adjust cloud sizes based on container size
+    let cloudElements = document.querySelectorAll('#cloud, #cloud2');
+    cloudElements.forEach(cloud => {
+        cloud.style.width = containerWidth * 0.3 + 'px'; // 10% of container width
+        cloud.style.height = containerHeight * 0.3 + 'px'; // 10% of container height
+    });
 }
 
 window.addEventListener('resize', resizeGameContainer);
 
 // Initial resize
 resizeGameContainer();
-// CLOUD
 
-     function resizeGameContainer() {
-            let viewportWidth = window.innerWidth;
-            let viewportHeight = window.innerHeight;
-            let containerWidth = viewportWidth * 0.9; // 90% of viewport width
-            let containerHeight = viewportHeight * 0.6; // 60% of viewport height
-            
-            gameContainer.style.width = containerWidth + 'px';
-            gameContainer.style.height = containerHeight + 'px';
-
-            // Adjust cloud sizes based on container size
-            let cloudElements = document.querySelectorAll('#cloud, #cloud2');
-            cloudElements.forEach(cloud => {
-                cloud.style.width = containerWidth * 0.3 + 'px'; // 10% of container width
-                cloud.style.height = containerHeight * 0.3 + 'px'; // 10% of container height
-            });
-        }
-
-        window.addEventListener('resize', resizeGameContainer);
-        resizeGameContainer(); // Initial call
-
-
-// Clound End
-// Add a reference to the congratulatory message box
-let congratulatoryMessageBox = document.getElementById('congratulatoryMessage');
+// Function to generate a 7-digit code
+function generateCode() {
+    return Math.floor(1000000 + Math.random() * 9000000);
+}
 
 function updateDifficulty() {
     if (score >= (currentLevel + 1) * levelUpScore && currentLevel < DIFFICULTY_LEVELS.length - 1) {
@@ -166,6 +155,7 @@ function updateDifficulty() {
         // Check if player has reached level 10
         if (currentLevel === DIFFICULTY_LEVELS.length - 1) {
             congratulatoryMessageBox.classList.remove('hidden'); // Show the congratulatory message
+            codeMessageCongratulatory.innerText = `შენი კოდი: ${generateCode()}`; // Display the code in the congratulatory message
             console.log('Congratulations! You won a pack of biscuits!');
         }
     }
@@ -233,6 +223,7 @@ function updateGame() {
          dinoRect.bottom > obstacle2Rect.top)) {
         gameOver = true;
         finalScore.innerText = `ორცხობილა 🍪: ${score}`;
+        codeMessageGameOver.innerText = `შენი კოდი: ${generateCode()}`; // Display the code in the game over box
         gameOverBox.style.display = 'block'; // Show game over box
     }
 
@@ -261,6 +252,7 @@ function resetGame() {
     obstacleSpacing = DIFFICULTY_LEVELS[0].obstacleSpacing;
     levelDisplay.innerText = `დონე: ${currentLevel}`;
     gameOverBox.style.display = 'none'; // Hide game over box
+    congratulatoryMessageBox.classList.add('hidden'); // Hide the congratulatory message
 }
 
 // Main game loop
