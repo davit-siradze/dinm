@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> RETEST Game</title>
+    <title>Dino Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,13 +11,14 @@
         <div id="sun"></div>
         <div id="dino"></div>
         <div id="obstacle"></div>
+        <div id="obstacle2" class="hidden"></div> <!-- Added second obstacle -->
         <div id="score">Cookies 🍪: 0</div>
         <div id="gameOverBox" class="hidden">
-            <p id="gameOverMessage">თამაში დასრულდა !  Cookies 🍪: <span id="finalScore">0</span></p>
+            <p id="gameOverMessage">თამაში დასრულდა <span id="finalScore">0</span></p>
             <button id="playAgainButton">ითამაშე თავიდან</button>
         </div>
     </div>
-    </div>
+    
     <script src="game.js"></script>
 </body>
 </html>
