@@ -25,7 +25,7 @@ body {
             top: 10%;
             width: 100px;
             height: 60px;
-            background: url('cloud.png') no-repeat center center;
+            background: url('cloud.webp') no-repeat center center;
             background-size: contain;
             animation: moveClouds 30s linear infinite;
         }
