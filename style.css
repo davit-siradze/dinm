@@ -281,3 +281,19 @@ body {
 #startGameButton {
     margin-top: 10px;
 }
+
+#congratulatoryMessage {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position it as needed */
+    top: 50%; /* Center it vertically */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Center it precisely */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #fff; /* White text */
+    padding: 20px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+#congratulatoryMessage.hidden {
+    display: none; /* Ensure it's hidden when not needed */
+}
