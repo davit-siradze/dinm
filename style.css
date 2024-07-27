@@ -252,7 +252,7 @@ body {
 }
 @media (max-width: 960px) and (orientation: landscape) {
     #gameContainer {
-        height: 100vh !important; /* Ensure height is 95% of the viewport height */
+        height: 80vh !important; /* Ensure height is 95% of the viewport height */
         /* Additional styles for very small screens can be added here */
     }
 }
