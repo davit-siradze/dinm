@@ -168,7 +168,7 @@ function updateGame() {
     if (parseInt(getComputedStyle(obstacle).right) > containerRect.width) {
         obstacle.style.right = -obstacleSpacing + 'px'; // Set new obstacle position
         score += 10; // Fixed score per obstacle hit
-        scoreDisplay.innerText = `Cookies 🍪: ${score}`;
+        scoreDisplay.innerText = `ორცხობილა 🍪: ${score}`;
 
         // Update difficulty
         updateDifficulty();
@@ -200,7 +200,7 @@ function updateGame() {
          dinoRect.right > obstacle2Rect.left &&
          dinoRect.bottom > obstacle2Rect.top)) {
         gameOver = true;
-        finalScore.innerText = `Cookies 🍪: ${score}`;
+        finalScore.innerText = `ორცხობილა 🍪: ${score}`;
         gameOverBox.style.display = 'block'; // Show game over box
     }
 
@@ -215,7 +215,7 @@ function updateGame() {
 function resetGame() {
     gameOver = false;
     score = 0;
-    scoreDisplay.innerText = 'Cookies 🍪: 0';
+    scoreDisplay.innerText = 'ორცხობილა 🍪: 0';
     obstacle.style.right = -obstacleSpacing + 'px'; // Reset obstacle position
     obstacle2.classList.add('hidden'); // Hide the second obstacle
     dinoBottom = 0;
