@@ -22,9 +22,9 @@ const DIFFICULTY_LEVELS = [
     { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 120 },
     { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 140 },
     { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 160 },
-    { speed: 13, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 150 },
-    { speed: 14, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
-    { speed: 15, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
+    { speed: 15, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 145 },
+    { speed: 15, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
+    { speed: 16, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
 ];
 
 let isJumping = false;
