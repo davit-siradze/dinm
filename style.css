@@ -1,4 +1,4 @@
-/* styles.css */
+/* Base styles */
 body {
     margin: 0;
     padding: 0;
@@ -20,6 +20,7 @@ body {
     box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
 
+/* Sun styling */
 #sun {
     position: absolute;
     top: 5%;
@@ -35,6 +36,7 @@ body {
                 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
+/* Dino styling */
 #dino {
     position: absolute;
     bottom: 0; /* Adjust position from bottom */
@@ -47,18 +49,36 @@ body {
     background-size: cover;
 }
 
+/* Obstacle styling */
 #obstacle {
     position: absolute;
-    bottom:0; /* Adjust position from bottom */
+    bottom: 0; /* Adjust position from bottom */
     right: 5%;
-    width: 10vw; /* Responsive width */
-    height: 10vw; /* Responsive height */
+    width: 7vw; /* Responsive width */
+    height: 7vw; /* Responsive height */
     max-width: 60px; /* Maximum size */
     max-height: 60px; /* Maximum size */
     background-image: url('s1.png'); /* Path to your obstacle image */
     background-size: cover;
 }
 
+#obstacle2 {
+    position: absolute;
+    bottom: 0;
+    width: 10vw; /* Responsive width */
+    height: 10vw; /* Responsive height */
+    max-width: 80px; /* Maximum size */
+    max-height: 80px; /* Maximum size */
+    background-image: url('s1.png'); /* Path to your obstacle image */
+    background-size: cover;
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+/* Score styling */
 #score {
     position: absolute;
     top: 5%;
@@ -67,6 +87,7 @@ body {
     color: #333;
 }
 
+/* Game over box styling */
 #gameOverBox {
     position: absolute;
     top: 50%;
@@ -91,6 +112,7 @@ body {
     font-size: 1.5rem; /* Responsive font size */
 }
 
+/* Play Again button styling */
 #playAgainButton {
     padding: 10px 20px;
     font-size: 1rem; /* Responsive font size */
@@ -103,4 +125,98 @@ body {
 
 #playAgainButton:hover {
     background: #45a049;
+}
+
+/* Media Queries for different screen sizes */
+
+/* Mobile Devices (Portrait) */
+@media (max-width: 480px) {
+    #gameContainer {
+        width: 95vw; /* Slightly wider for mobile */
+        height: 70vh; /* Slightly taller for mobile */
+    }
+    
+    #dino {
+        width: 20vw; /* Larger Dino for mobile */
+        height: 25vw; /* Larger Dino for mobile */
+    }
+    
+    #obstacle {
+        width: 10vw; /* Larger Obstacle for mobile */
+        height: 10vw; /* Larger Obstacle for mobile */
+    }
+    
+    #obstacle2 {
+        width: 15vw; /* Larger Obstacle2 for mobile */
+        height: 15vw; /* Larger Obstacle2 for mobile */
+    }
+    
+    #score {
+        font-size: 4vw; /* Larger score text for mobile */
+    }
+    
+    #gameOverBox {
+        width: 90%; /* Wider game over box for mobile */
+    }
+    
+    #playAgainButton {
+        font-size: 1.2rem; /* Larger button text for mobile */
+    }
+}
+
+/* Tablets and Small Laptops */
+@media (min-width: 481px) and (max-width: 1024px) {
+    #gameContainer {
+        width: 90vw;
+        height: 65vh; /* Adjust height for tablets */
+    }
+    
+    #dino {
+        width: 15vw; /* Adjust Dino size */
+        height: 20vw; /* Adjust Dino size */
+    }
+    
+    #obstacle {
+        width: 8vw; /* Adjust Obstacle size */
+        height: 8vw; /* Adjust Obstacle size */
+    }
+    
+    #obstacle2 {
+        width: 12vw; /* Adjust Obstacle2 size */
+        height: 12vw; /* Adjust Obstacle2 size */
+    }
+    
+    #score {
+        font-size: 2.5vw; /* Adjust score text size */
+    }
+    
+    #gameOverBox {
+        width: 85%; /* Adjust width for tablets */
+    }
+    
+    #playAgainButton {
+        font-size: 1.1rem; /* Slightly larger button text */
+    }
+}
+#playAgainButton {
+    padding: 10px 20px;
+    font-size: 1rem; /* Responsive font size */
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Ensure it is displayed */
+    margin: 20px auto; /* Center the button horizontally */
+}
+
+#playAgainButton:hover {
+    background: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #playAgainButton {
+        font-size: 1.2rem; /* Larger button text for mobile */
+    }
 }
