@@ -297,3 +297,7 @@ body {
 #congratulatoryMessage.hidden {
     display: none; /* Ensure it's hidden when not needed */
 }
+#codeMessage {
+    margin-top: 10px;
+    font-weight: bold;
+}
