@@ -266,8 +266,13 @@ body {
     border: 2px solid #000;
     padding: 20px;
     z-index: 1000;
+    display: flex;
     text-align: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
+
 
 #mobileMessageBox.hidden {
     display: none;
