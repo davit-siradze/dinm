@@ -140,8 +140,8 @@ resizeGameContainer();
             // Adjust cloud sizes based on container size
             let cloudElements = document.querySelectorAll('#cloud, #cloud2');
             cloudElements.forEach(cloud => {
-                cloud.style.width = containerWidth * 0.1 + 'px'; // 10% of container width
-                cloud.style.height = containerHeight * 0.1 + 'px'; // 10% of container height
+                cloud.style.width = containerWidth * 0.3 + 'px'; // 10% of container width
+                cloud.style.height = containerHeight * 0.3 + 'px'; // 10% of container height
             });
         }
 
