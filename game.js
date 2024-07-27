@@ -1,22 +1,36 @@
-// JavaScript code for the Dino Game
-
 let dino = document.getElementById('dino');
 let obstacle = document.getElementById('obstacle');
 let obstacle2 = document.getElementById('obstacle2'); // Second obstacle
 let scoreDisplay = document.getElementById('score');
+let levelDisplay = document.getElementById('levelDisplay'); // New element for displaying level
 let gameContainer = document.getElementById('gameContainer');
 let gameOverBox = document.getElementById('gameOverBox');
 let finalScore = document.getElementById('finalScore');
 let playAgainButton = document.getElementById('playAgainButton');
 
+// Define difficulty levels (10 levels)
+const DIFFICULTY_LEVELS = [
+    { speed: 5, jumpVelocity: 16, spawnChance: 0.6, obstacleSpacing: 100 },
+    { speed: 6, jumpVelocity: 15, spawnChance: 0.65, obstacleSpacing: 120 },
+    { speed: 7, jumpVelocity: 14, spawnChance: 0.7, obstacleSpacing: 140 },
+    { speed: 8, jumpVelocity: 13, spawnChance: 0.75, obstacleSpacing: 160 },
+    { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 180 },
+    { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 200 },
+    { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 220 },
+    { speed: 12, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 240 },
+    { speed: 13, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 260 },
+    { speed: 14, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 280 }
+];
+
 let isJumping = false;
 let isFalling = false;
 let score = 0;
-let obstacleSpeed = 5; // Initial speed of the obstacle
+let obstacleSpeed = DIFFICULTY_LEVELS[0].speed; // Initial speed of the obstacle
 let gameOver = false; // Flag to track game state
 
 const GRAVITY = -0.6; // Gravity effect
-let JUMP_VELOCITY = 16; // Initial jump velocity
+let JUMP_VELOCITY = DIFFICULTY_LEVELS[0].jumpVelocity; // Initial jump velocity
+let obstacleSpacing = DIFFICULTY_LEVELS[0].obstacleSpacing; // Initial obstacle spacing
 
 let dinoBottom = 0; // Dino's bottom position in px
 let dinoVelocity = 0; // Dino's vertical velocity
@@ -24,16 +38,8 @@ let dinoVelocity = 0; // Dino's vertical velocity
 let difficultyIncreaseInterval = 2000; // Time interval for increasing difficulty (ms)
 let difficultyTimer = 0; // Timer to track time elapsed for difficulty increase
 
-// Define difficulty levels
-const DIFFICULTY_LEVELS = [
-    { speed: 5, jumpVelocity: 16, spawnChance: 0.6 },
-    { speed: 7, jumpVelocity: 14, spawnChance: 0.7 },
-    { speed: 10, jumpVelocity: 12, spawnChance: 0.8 },
-    { speed: 13, jumpVelocity: 10, spawnChance: 0.9 }
-];
-
 let currentLevel = 0; // Start at level 0
-let levelUpScore = 10; // Score threshold to move to the next level
+let levelUpScore = 100; // Score threshold to move to the next level
 
 // Function to handle jumping
 function jump() {
@@ -76,7 +82,6 @@ playAgainButton.addEventListener('touchstart', (e) => {
     gameOverBox.style.display = 'none'; // Hide game over box
 }, { passive: false }); // Ensure preventDefault works
 
-
 // Resize gameContainer based on window size
 function resizeGameContainer() {
     let viewportWidth = window.innerWidth;
@@ -99,6 +104,8 @@ function updateDifficulty() {
         obstacleSpeed = DIFFICULTY_LEVELS[currentLevel].speed;
         JUMP_VELOCITY = DIFFICULTY_LEVELS[currentLevel].jumpVelocity;
         difficultyIncreaseInterval = 2000 / (currentLevel + 1); // Increase difficulty more often
+        obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Update spacing
+        levelDisplay.innerText = `Level: ${currentLevel}`; // Update level display
         console.log(`Level Up! Current Level: ${currentLevel}`);
     }
 }
@@ -130,8 +137,8 @@ function updateGame() {
     let obstacleRight = parseInt(getComputedStyle(obstacle).right);
     obstacle.style.right = (obstacleRight + obstacleSpeed) + 'px';
     if (parseInt(getComputedStyle(obstacle).right) > containerRect.width) {
-        obstacle.style.right = '-50px'; // Reset obstacle position
-        score++;
+        obstacle.style.right = -obstacleSpacing + 'px'; // Set new obstacle position
+        score += Math.max(10 - currentLevel, 1); // Decrease score per obstacle based on level, min 1
         scoreDisplay.innerText = `Cookies 🍪: ${score}`;
 
         // Update difficulty
@@ -140,7 +147,7 @@ function updateGame() {
         // Randomly decide whether to spawn the second obstacle
         if (Math.random() < DIFFICULTY_LEVELS[currentLevel].spawnChance) {
             obstacle2.classList.remove('hidden');
-            obstacle2.style.right = '-80px'; // Position second obstacle off-screen
+            obstacle2.style.right = -obstacleSpacing - 30 + 'px'; // Position second obstacle further off-screen
         } else {
             obstacle2.classList.add('hidden');
         }
@@ -180,13 +187,18 @@ function resetGame() {
     gameOver = false;
     score = 0;
     scoreDisplay.innerText = 'Cookies 🍪: 0';
-    obstacle.style.right = '-50px'; // Reset obstacle position
+    obstacle.style.right = -obstacleSpacing + 'px'; // Reset obstacle position
     obstacle2.classList.add('hidden'); // Hide the second obstacle
     dinoBottom = 0;
     dinoVelocity = 0;
     dino.style.bottom = '0px';
+
+    // Reset to initial level settings
+    currentLevel = 0; // Reset level to 0
     obstacleSpeed = DIFFICULTY_LEVELS[currentLevel].speed; // Reset obstacle speed
     JUMP_VELOCITY = DIFFICULTY_LEVELS[currentLevel].jumpVelocity; // Reset jump velocity
+    obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Reset obstacle spacing
+    levelDisplay.innerText = 'Level: 0'; // Reset level display to 0
     difficultyTimer = 0; // Reset difficulty timer
 }
 
