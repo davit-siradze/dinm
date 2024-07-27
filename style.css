@@ -87,6 +87,13 @@ body {
     font-size: 2vw; /* Responsive font size */
     color: #333;
 }
+#levelDisplay{
+    position: absolute;
+    top: 14%;
+    left: 5%;
+    font-size: 2vw; /* Responsive font size */
+    color: #333;
+}
 
 /* Game over box styling */
 #gameOverBox {
@@ -167,7 +174,13 @@ body {
         width: 95vw; /* Increase width for mobile */
         height: 50vh; /* Adjust height for mobile */
     }
-    
+    #levelDisplay{
+        position: absolute;
+        top: 9%;
+        left: 5%;
+        font-size: 2vw; /* Responsive font size */
+        color: #333;
+    }
     .text-game {
         width: 95%; /* Increase width for mobile */
         padding: 15px; /* Reduce padding for smaller screens */
@@ -202,20 +215,22 @@ body {
         font-size: 1rem; /* Maintain paragraph size for tablets */
     }
 }
-/* Mobile reset message styling */
-#mobileResetMessage {
+#mobileMessageBox {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    background-color: #fff;
+    border: 2px solid #000;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    z-index: 9999; /* Ensure it is on top of other content */
+    z-index: 1000;
+    text-align: center;
 }
 
-#mobileResetMessage.hidden {
+#mobileMessageBox.hidden {
     display: none;
+}
+
+#startGameButton {
+    margin-top: 10px;
 }
