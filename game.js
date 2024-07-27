@@ -69,6 +69,14 @@ playAgainButton.addEventListener('click', () => {
     gameOverBox.style.display = 'none'; // Hide game over box
 });
 
+// Ensure touch events are handled for mobile
+playAgainButton.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevent default touch behavior
+    resetGame();
+    gameOverBox.style.display = 'none'; // Hide game over box
+}, { passive: false }); // Ensure preventDefault works
+
+
 // Resize gameContainer based on window size
 function resizeGameContainer() {
     let viewportWidth = window.innerWidth;
