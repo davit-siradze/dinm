@@ -17,6 +17,7 @@ body {
     overflow: hidden;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+
     box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
 
@@ -45,7 +46,7 @@ body {
     height: 15vw; /* Responsive height */
     max-width: 60px; /* Maximum size */
     max-height: 90px; /* Maximum size */
-    background-image: url('s2.png'); /* Path to your dino image */
+    background-image: url('1-1.png'); /* Path to your dino image */
     background-size: cover;
 }
 
@@ -200,4 +201,21 @@ body {
     .text-game p {
         font-size: 1rem; /* Maintain paragraph size for tablets */
     }
+}
+/* Mobile reset message styling */
+#mobileResetMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 9999; /* Ensure it is on top of other content */
+}
+
+#mobileResetMessage.hidden {
+    display: none;
 }
