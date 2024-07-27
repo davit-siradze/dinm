@@ -254,6 +254,7 @@ body {
     #gameContainer {
         height: 75vh !important; /* Ensure height is 95% of the viewport height */
         /* Additional styles for very small screens can be added here */
+        margin-top:5px;
     }
 }
 #mobileMessageBox {
