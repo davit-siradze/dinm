@@ -214,11 +214,6 @@ body {
     .text-game p {
         font-size: 1rem; /* Maintain paragraph size for tablets */
     }
-}@media (max-width: 961px) and (max-height: 305px) {
-    #gameContainer {
-        height: 95vh !important; /* Ensure height is 95% of the viewport height */
-        /* Additional styles for very small screens can be added here */
-    }
 }
 @media (max-width: 961px) and (max-height: 405px) {
     #gameContainer {
