@@ -126,7 +126,30 @@ window.addEventListener('resize', resizeGameContainer);
 
 // Initial resize
 resizeGameContainer();
+// CLOUD
 
+     function resizeGameContainer() {
+            let viewportWidth = window.innerWidth;
+            let viewportHeight = window.innerHeight;
+            let containerWidth = viewportWidth * 0.9; // 90% of viewport width
+            let containerHeight = viewportHeight * 0.6; // 60% of viewport height
+            
+            gameContainer.style.width = containerWidth + 'px';
+            gameContainer.style.height = containerHeight + 'px';
+
+            // Adjust cloud sizes based on container size
+            let cloudElements = document.querySelectorAll('#cloud, #cloud2');
+            cloudElements.forEach(cloud => {
+                cloud.style.width = containerWidth * 0.1 + 'px'; // 10% of container width
+                cloud.style.height = containerHeight * 0.1 + 'px'; // 10% of container height
+            });
+        }
+
+        window.addEventListener('resize', resizeGameContainer);
+        resizeGameContainer(); // Initial call
+
+
+// Clound End
 function updateDifficulty() {
     if (score >= (currentLevel + 1) * levelUpScore && currentLevel < DIFFICULTY_LEVELS.length - 1) {
         currentLevel++;
