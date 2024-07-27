@@ -16,7 +16,7 @@ body {
     background: #e0e0e0;
     overflow: hidden;
     margin: 0 auto;
-    border: 2px solid #333; /* Optional: Add a border to visualize the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
     box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
 
