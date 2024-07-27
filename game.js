@@ -7,19 +7,21 @@ let gameContainer = document.getElementById('gameContainer');
 let gameOverBox = document.getElementById('gameOverBox');
 let finalScore = document.getElementById('finalScore');
 let playAgainButton = document.getElementById('playAgainButton');
+let mobileMessageBox = document.getElementById('mobileMessageBox');
+let startGameButton = document.getElementById('startGameButton');
 
 // Define difficulty levels (10 levels)
 const DIFFICULTY_LEVELS = [
-    { speed: 5, jumpVelocity: 16, spawnChance: 0.6, obstacleSpacing: 100 },
-    { speed: 6, jumpVelocity: 15, spawnChance: 0.65, obstacleSpacing: 120 },
-    { speed: 7, jumpVelocity: 14, spawnChance: 0.7, obstacleSpacing: 140 },
-    { speed: 8, jumpVelocity: 13, spawnChance: 0.75, obstacleSpacing: 160 },
-    { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 180 },
-    { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 200 },
-    { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 220 },
-    { speed: 12, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 240 },
-    { speed: 13, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 260 },
-    { speed: 14, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 280 }
+    { speed: 5, jumpVelocity: 16, spawnChance: 0.6, obstacleSpacing: 40 },
+    { speed: 6, jumpVelocity: 15, spawnChance: 0.65, obstacleSpacing: 60 },
+    { speed: 7, jumpVelocity: 14, spawnChance: 0.7, obstacleSpacing: 80 },
+    { speed: 8, jumpVelocity: 13, spawnChance: 0.75, obstacleSpacing: 100 },
+    { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 120 },
+    { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 140 },
+    { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 160 },
+    { speed: 12, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 180 },
+    { speed: 13, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
+    { speed: 14, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
 ];
 
 let isJumping = false;
@@ -40,6 +42,33 @@ let difficultyTimer = 0; // Timer to track time elapsed for difficulty increase
 
 let currentLevel = 0; // Start at level 0
 let levelUpScore = 100; // Score threshold to move to the next level
+
+// Function to detect mobile devices
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+// Function to start the game
+function startGame() {
+    mobileMessageBox.classList.add('hidden'); // Hide the message box
+    gameContainer.classList.remove('hidden'); // Show the game container
+    gameLoop(); // Start the game loop
+}
+
+// Show message and start button for mobile users
+if (isMobile()) {
+    gameContainer.classList.add('hidden'); // Hide game container initially
+    mobileMessageBox.classList.remove('hidden'); // Show the mobile message box
+
+    startGameButton.addEventListener('click', () => {
+        startGame();
+    });
+
+    startGameButton.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Prevent default touch behavior
+        startGame();
+    }, { passive: false }); // Ensure preventDefault works
+}
 
 // Function to handle jumping
 function jump() {
@@ -138,7 +167,7 @@ function updateGame() {
     obstacle.style.right = (obstacleRight + obstacleSpeed) + 'px';
     if (parseInt(getComputedStyle(obstacle).right) > containerRect.width) {
         obstacle.style.right = -obstacleSpacing + 'px'; // Set new obstacle position
-        score += Math.max(10 - currentLevel, 1); // Decrease score per obstacle based on level, min 1
+        score += 10; // Fixed score per obstacle hit
         scoreDisplay.innerText = `Cookies 🍪: ${score}`;
 
         // Update difficulty
@@ -194,13 +223,21 @@ function resetGame() {
     dino.style.bottom = '0px';
 
     // Reset to initial level settings
-    currentLevel = 0; // Reset level to 0
-    obstacleSpeed = DIFFICULTY_LEVELS[currentLevel].speed; // Reset obstacle speed
-    JUMP_VELOCITY = DIFFICULTY_LEVELS[currentLevel].jumpVelocity; // Reset jump velocity
-    obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Reset obstacle spacing
-    levelDisplay.innerText = 'Level: 0'; // Reset level display to 0
-    difficultyTimer = 0; // Reset difficulty timer
+    currentLevel = 0;
+    obstacleSpeed = DIFFICULTY_LEVELS[0].speed;
+    JUMP_VELOCITY = DIFFICULTY_LEVELS[0].jumpVelocity;
+    obstacleSpacing = DIFFICULTY_LEVELS[0].obstacleSpacing;
+    levelDisplay.innerText = `Level: ${currentLevel}`;
+    gameOverBox.style.display = 'none'; // Hide game over box
 }
 
-// Update the game at regular intervals
-setInterval(updateGame, 20);
+// Main game loop
+function gameLoop() {
+    updateGame();
+    requestAnimationFrame(gameLoop); // Request the next frame
+}
+
+// Start the game loop if not on mobile
+if (!isMobile()) {
+    gameLoop(); // Start the game loop
+}
