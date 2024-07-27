@@ -150,6 +150,9 @@ resizeGameContainer();
 
 
 // Clound End
+// Add a reference to the congratulatory message box
+let congratulatoryMessageBox = document.getElementById('congratulatoryMessage');
+
 function updateDifficulty() {
     if (score >= (currentLevel + 1) * levelUpScore && currentLevel < DIFFICULTY_LEVELS.length - 1) {
         currentLevel++;
@@ -159,6 +162,12 @@ function updateDifficulty() {
         obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Update spacing
         levelDisplay.innerText = `დონე: ${currentLevel}`; // Update level display
         console.log(`Level Up! Current Level: ${currentLevel}`);
+        
+        // Check if player has reached level 10
+        if (currentLevel === DIFFICULTY_LEVELS.length - 1) {
+            congratulatoryMessageBox.classList.remove('hidden'); // Show the congratulatory message
+            console.log('Congratulations! You won a pack of biscuits!');
+        }
     }
 }
 
