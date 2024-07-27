@@ -157,7 +157,7 @@ function updateDifficulty() {
         JUMP_VELOCITY = DIFFICULTY_LEVELS[currentLevel].jumpVelocity;
         difficultyIncreaseInterval = 2000 / (currentLevel + 1); // Increase difficulty more often
         obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Update spacing
-        levelDisplay.innerText = `Level: ${currentLevel}`; // Update level display
+        levelDisplay.innerText = `დონე: ${currentLevel}`; // Update level display
         console.log(`Level Up! Current Level: ${currentLevel}`);
     }
 }
@@ -250,7 +250,7 @@ function resetGame() {
     obstacleSpeed = DIFFICULTY_LEVELS[0].speed;
     JUMP_VELOCITY = DIFFICULTY_LEVELS[0].jumpVelocity;
     obstacleSpacing = DIFFICULTY_LEVELS[0].obstacleSpacing;
-    levelDisplay.innerText = `Level: ${currentLevel}`;
+    levelDisplay.innerText = `დონე: ${currentLevel}`;
     gameOverBox.style.display = 'none'; // Hide game over box
 }
 
