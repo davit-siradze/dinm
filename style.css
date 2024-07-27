@@ -20,7 +20,29 @@ body {
 
     box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
+#cloud, #cloud2 {
+            position: absolute;
+            top: 10%;
+            width: 100px;
+            height: 60px;
+            background: url('cloud.png') no-repeat center center;
+            background-size: contain;
+            animation: moveClouds 30s linear infinite;
+        }
 
+        #cloud2 {
+            top: 20%;
+            animation: moveClouds 40s linear infinite;
+        }
+
+        @keyframes moveClouds {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -10%;
+            }
+        }
 /* Sun styling */
 #sun {
     position: absolute;
