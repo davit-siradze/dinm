@@ -22,7 +22,7 @@ const DIFFICULTY_LEVELS = [
     { speed: 9, jumpVelocity: 12, spawnChance: 0.8, obstacleSpacing: 120 },
     { speed: 10, jumpVelocity: 11, spawnChance: 0.85, obstacleSpacing: 140 },
     { speed: 11, jumpVelocity: 10, spawnChance: 0.9, obstacleSpacing: 160 },
-    { speed: 15, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 145 },
+    { speed: 15, jumpVelocity: 9, spawnChance: 0.95, obstacleSpacing: 155 },
     { speed: 15, jumpVelocity: 8, spawnChance: 1.0, obstacleSpacing: 200 },
     { speed: 16, jumpVelocity: 7, spawnChance: 1.05, obstacleSpacing: 220 }
 ];
@@ -155,7 +155,7 @@ function updateDifficulty() {
         // Check if player has reached level 10
         if (currentLevel === DIFFICULTY_LEVELS.length - 1) {
             congratulatoryMessageBox.classList.remove('hidden'); // Show the congratulatory message
-            codeMessageCongratulatory.innerText = `შენი კოდი: ${generateCode()}`; // Display the code in the congratulatory message
+            codeMessageCongratulatory.innerText = `Your code: ${generateCode()}`; // Display the code in the congratulatory message
             console.log('Congratulations! You won a pack of biscuits!');
         }
     }
@@ -190,7 +190,8 @@ function updateGame() {
     if (parseInt(getComputedStyle(obstacle).right) > containerRect.width) {
         obstacle.style.right = -obstacleSpacing + 'px'; // Set new obstacle position
         score += 10; // Fixed score per obstacle hit
-        scoreDisplay.innerText = `ორცხობილა 🍪: ${score}`;
+        scoreDisplay.innerHTML = `ორცხობილა <img src="img201.png" alt="cookie" style="width:40px; height:30px;      display: inline-block;
+        vertical-align: middle;">: ${score}`; // Use image
 
         // Update difficulty
         updateDifficulty();
@@ -222,8 +223,9 @@ function updateGame() {
          dinoRect.right > obstacle2Rect.left &&
          dinoRect.bottom > obstacle2Rect.top)) {
         gameOver = true;
-        finalScore.innerText = `ორცხობილა 🍪: ${score}`;
-        codeMessageGameOver.innerText = `შენი კოდი: ${generateCode()}`; // Display the code in the game over box
+        finalScore.innerHTML = `ორცხობილა <img src="img201.png" alt="cookie" style="width:40px; height:30px;       display: inline-block;
+        vertical-align: middle;">: ${score}`; // Use image
+        codeMessageGameOver.innerText = `Your code: ${generateCode()}`; // Display the code in the game over box
         gameOverBox.style.display = 'block'; // Show game over box
     }
 
@@ -238,7 +240,8 @@ function updateGame() {
 function resetGame() {
     gameOver = false;
     score = 0;
-    scoreDisplay.innerText = 'ორცხობილა 🍪: 0';
+    scoreDisplay.innerHTML = `ორცხობილა <img src="img201.png" alt="cookie" style="width:40px; height:30px;      display: inline-block;
+    vertical-align: middle;">: 0`; // Use image
     obstacle.style.right = -obstacleSpacing + 'px'; // Reset obstacle position
     obstacle2.classList.add('hidden'); // Hide the second obstacle
     dinoBottom = 0;
