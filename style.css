@@ -301,3 +301,16 @@ body {
     margin-top: 10px;
     font-weight: bold;
 }
+#cookieimg201{
+      width: 40px; /* Ensure the size is as desired */
+            height: 30px;
+            vertical-align: middle;
+
+}
+    @media (max-width: 600px) {
+          
+            #cookieimg201 {
+                width: 20px;
+                height: 15px;
+            }
+        }
