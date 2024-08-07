@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dino Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Server is Down</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .text {
+            font-size: 3em;
+            animation: blink 1.5s steps(2, start) infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="gameContainer">
-        <div id="sun"></div>
-        <div id="dino" class="mirror-horizontal"></div>
-        <div id="cloud"></div>
-        <div id="cloud2"></div>
-        <div id="obstacle"></div>
-        <div id="obstacle2" class="hidden"></div> <!-- Added second obstacle -->
-        <div id="score">ორცხობილა <img src="img201.png" alt="cookie" id="cookieimg201">: 0 </div>
-       <div id="levelDisplay">დონე: 0</div>
-<div id="congratulatoryMessage" class="">
-    <p id="codeMessageCongratulatory"></p> 
-
-    <p>გილოცავთ! თქვენ მოიგეთ 1 შეკვრა ორცხობილა!</p>
-</div>
-
-        <div id="gameOverBox" class="hidden">
-            <p id="gameOverMessage">თამაში დასრულდა <span id="finalScore">0</span></p>
-            <p id="codeMessageGameOver"></p> 
-            <button id="playAgainButton">ითამაშე თავიდან</button>
-        </div>
-
+    <div class="container">
+        <div class="text">Server is Down</div>
     </div>
-    <div id="mobileMessageBox" class="hidden">
-        <img src="logo.png" alt="logo" class="logoims" width="100%" style="    max-width: 90px; margin-bottom:20px;">
-        <img src="2313685.png" alt="" style="width: 40px;"> 
-        <p>გთხოვთ ამოატრიალოთ მობილური, რადგან უკეთ შეძლოთ თამაში!</p>
-        <button id="startGameButton">დაიწყე თამაში</button>
-    </div>
-    
-
- 
-    
-    <script src="game.js"></script>
 </body>
 </html>
