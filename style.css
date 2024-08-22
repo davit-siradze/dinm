@@ -9,12 +9,11 @@ body {
 
 #gameContainer {
     position: relative;
-    width: 90vw; /* 90% of viewport width */
-    height: 60vh; /* 60% of viewport height */
-    max-width: 800px; /* Maximum width to prevent container from being too large */
-    max-height: 500px; /* Maximum height to prevent container from being too large */
-    background: #e0e0e0;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     overflow: hidden;
+ /* Maximum height to prevent container from being too large */
+    background: #e0e0e0;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow for depth */
 
@@ -43,6 +42,25 @@ body {
                 left: -10%;
             }
         }
+        #cloud3 {
+            position: absolute;
+            top: 18%; /* Adjust the vertical position */
+            width: 25px; /* Size of the cloud */
+            height: 80px;
+            background: url('bird.png') no-repeat center center; /* Path to the cloud image */
+            background-size: contain;
+            animation: moveClouds3 35s linear infinite; /* Animation with a different speed */
+        }
+        
+        @keyframes moveClouds3 {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: 35%;
+            }
+        }
+        
 /* Sun styling */
 #sun {
     position: absolute;
@@ -52,13 +70,10 @@ body {
     height: 15vw; /* Responsive height */
     max-width: 100px; /* Maximum size */
     max-height: 100px; /* Maximum size */
-    background: radial-gradient(circle, #FFD700 60%, transparent 70%);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 
-                0 0 15px rgba(255, 215, 0, 0.5),
-                0 0 20px rgba(255, 215, 0, 0.3);
 }
-
+#sun img {
+    width: 100px;
+}
 /* Dino styling */
 #dino {
     position: absolute;
@@ -205,10 +220,10 @@ body {
 
 /* Mobile Devices (Portrait) */
 @media (max-width: 480px) {
-    #gameContainer {
-        width: 95vw; /* Increase width for mobile */
-        height: 50vh; /* Adjust height for mobile */
-    }
+    /* #gameContainer {
+        width: 95vw; 
+        height: 50vh; 
+    } */
     #levelDisplay{
         position: absolute;
         top: 9%;
@@ -232,10 +247,10 @@ body {
 
 /* Tablets and Small Laptops */
 @media (min-width: 481px) and (max-width: 1024px) {
-    #gameContainer {
+    /* #gameContainer {
         width: 90vw;
-        height: 60vh; /* Adjust height for tablets */
-    }
+        height: 60vh; 
+    } */
     
     .text-game {
         width: 90%; /* Adjust width for tablets */
@@ -251,11 +266,10 @@ body {
     }
 }
 @media (max-width: 960px) and (orientation: landscape) {
-    #gameContainer {
-        height: 75vh !important; /* Ensure height is 95% of the viewport height */
-        /* Additional styles for very small screens can be added here */
+    /* #gameContainer {
+        height: 75vh !important; 
         margin-top:5px;
-    }
+    } */
 }
 #mobileMessageBox {
     position: fixed;
