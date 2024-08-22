@@ -114,26 +114,22 @@ playAgainButton.addEventListener('touchstart', (e) => {
     gameOverBox.style.display = 'none'; // Hide game over box
 }, { passive: false }); // Ensure preventDefault works
 
-// Resize gameContainer based on window size
 function resizeGameContainer() {
-    let viewportWidth = window.innerWidth;
-    let viewportHeight = window.innerHeight;
-    let containerWidth = viewportWidth * 0.9; // 90% of viewport width
-    let containerHeight = viewportHeight * 0.6; // 60% of viewport height
+    let containerWidth = window.innerWidth;
+    let containerHeight = window.innerHeight;
     
     gameContainer.style.width = containerWidth + 'px';
     gameContainer.style.height = containerHeight + 'px';
     
-    // Adjust cloud sizes based on container size
+    // Adjust cloud sizes based on container size (optional)
     let cloudElements = document.querySelectorAll('#cloud, #cloud2');
     cloudElements.forEach(cloud => {
-        cloud.style.width = containerWidth * 0.3 + 'px'; // 10% of container width
-        cloud.style.height = containerHeight * 0.3 + 'px'; // 10% of container height
+        cloud.style.width = containerWidth * 0.3 + 'px'; // Adjust as needed
+        cloud.style.height = containerHeight * 0.3 + 'px'; // Adjust as needed
     });
 }
 
 window.addEventListener('resize', resizeGameContainer);
-
 // Initial resize
 resizeGameContainer();
 
