@@ -65,7 +65,7 @@ body {
 #sun {
     position: absolute;
     top: 5%;
-    right: 5%;
+    right: 12%;
     width: 15vw; /* Responsive width */
     height: 15vw; /* Responsive height */
     max-width: 100px; /* Maximum size */
