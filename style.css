@@ -301,6 +301,7 @@ body {
 #mobileMessageBox p{
     font-size: 3.5vw;
     text-align: left;
+    width: 180px;
 }
 
 #mobileMessageBox.hidden {
