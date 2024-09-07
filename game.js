@@ -272,3 +272,15 @@ function gameLoop() {
 if (!isMobile()) {
     gameLoop(); // Start the game loop
 }
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    // alert('Right-click is disabled');
+  });
+  
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    //   alert('Inspect Element is disabled');
+    }
+  });
+  
