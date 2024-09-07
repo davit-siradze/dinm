@@ -19,6 +19,13 @@ body {
 
     box-sizing: border-box; /* Ensure padding and border are included in the width and height */
 }
+/* Game container for desktop */
+@media (min-width: 904px) {
+    #gameContainer {
+        width: 850px !important; /* Fixed width for desktop */
+        height: 800px !important; /* Fixed height for desktop */
+    }
+}
 .gameoverlogo{
     width: 25%;
     max-width: 100px;
@@ -291,7 +298,10 @@ body {
     text-align: center;
     align-items: center;
 }
-
+#mobileMessageBox p{
+    font-size: 3.5vw;
+    text-align: left;
+}
 
 #mobileMessageBox.hidden {
     display: none;
@@ -299,6 +309,17 @@ body {
 
 #startGameButton {
     margin-top: 10px;
+    background: rgb(0, 172, 238);
+    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+    width: 120px;
+    height: 28px;
+    line-height: 29px;
+    padding: 0;
+    border-radius: 20px;
+    font-size: 3.5vw;
+    color: #fff;
+    border: none;
+
 }
 .congratuLogo{
     width: 54%;
