@@ -147,15 +147,26 @@ function updateDifficulty() {
         obstacleSpacing = DIFFICULTY_LEVELS[currentLevel].obstacleSpacing; // Update spacing
         levelDisplay.innerText = `დონე: ${currentLevel}`; // Update level display
         console.log(`Level Up! Current Level: ${currentLevel}`);
-        
+
+        // Show congratulatory message and end the game when the player reaches level 2 (completes level 1)
+        if (currentLevel === 1) {
+            congratulatoryMessageBox.classList.remove('hidden'); // Show the congratulatory message
+            codeMessageCongratulatory.innerText = `Your code: ${generateCode()}`; // Display the code
+            console.log('Congratulations on completing level 1!');
+            gameOver = true; // End the game
+        }
+
         // Check if player has reached level 10
         if (currentLevel === DIFFICULTY_LEVELS.length - 1) {
             congratulatoryMessageBox.classList.remove('hidden'); // Show the congratulatory message
-            codeMessageCongratulatory.innerText = `Your code: ${generateCode()}`; // Display the code in the congratulatory message
+            codeMessageCongratulatory.innerText = `Your code: ${generateCode()}`; // Display the code
             console.log('Congratulations! You won a pack of biscuits!');
+            gameOver = true; // End the game
         }
     }
 }
+
+
 
 function updateGame() {
     if (gameOver) return; // Skip update if game is over
