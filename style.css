@@ -27,8 +27,8 @@ body {
     }
 }
 .gameoverlogo{
-    width: 25%;
-    max-width: 100px;
+    width: 100%;
+    max-width: 255px;
 }
 
 #cloud, #cloud2 {
@@ -301,7 +301,6 @@ body {
 #mobileMessageBox p{
     font-size: 3.5vw;
     text-align: left;
-    width: 180px;
 }
 
 #mobileMessageBox.hidden {
